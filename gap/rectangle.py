@@ -6,10 +6,10 @@ class Rectangle:
       self.h = h
 
    def intersects_rect(self, other):
-      return !(self.x + self.w < other.x \
-            || self.x > other.x + other.w \
-            || self.y + self.h < other.y \
-            || self.y > other.y + other.h
+      return not (self.x + self.w < other.x \
+            or self.x > other.x + other.w \
+            or self.y + self.h < other.y \
+            or self.y > other.y + other.h)
 
    def intersects_circle(self, circle):
       # XXX

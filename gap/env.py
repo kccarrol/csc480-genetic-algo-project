@@ -1,3 +1,4 @@
+from PySFML import *
 from rectangle import Rectangle
 
 class Env:

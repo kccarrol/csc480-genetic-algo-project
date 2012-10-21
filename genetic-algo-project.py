@@ -35,7 +35,7 @@ def main() :
          if ((event.Type == sf.Event.KeyPressed) and (event.Key.Code == 50)): # 50 is Num2
             env.create_env2()
 
-      window.Draw(sf.Shape.Rectangle(0, 0, window_size, window_size, sf.Color(0, 0, 0))
+      window.Draw(sf.Shape.Rectangle(0, 0, window_size, window_size, sf.Color(0, 0, 0)))
       env.draw(window)
       window.Draw(sf.String('Generation: 0'))
       window.Display()
