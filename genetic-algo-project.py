@@ -8,8 +8,7 @@ def main() :
    window_size = 640
    window = sf.RenderWindow(sf.VideoMode(window_size, window_size), "CSC-480: Circle Plotting with Genetic Algorithms")
 
-   #define initial environment number
-   env_num = 2
+   env = gap.Env(window_size)
 
    #define start Time
    initialTime = time.clock()
@@ -32,13 +31,13 @@ def main() :
          if ((event.Type == sf.Event.KeyPressed) and (event.Key.Code == sf.Key.Q)):
             return
          if ((event.Type == sf.Event.KeyPressed) and (event.Key.Code == 49)): # 49 is Num1 
-            env_num = 1
+            env.create_env1()
          if ((event.Type == sf.Event.KeyPressed) and (event.Key.Code == 50)): # 50 is Num2
-            env_num = 2
-#         if (event.Type == sf.Event.KeyPressed):
-#            print (event.Key.Code)
+            env.create_env2()
 
-      gap.Env(window, window_size, sf, env_num)
+      window.Draw(sf.Shape.Rectangle(0, 0, window_size, window_size, sf.Color(0, 0, 0))
+      env.draw(window)
+      window.Draw(sf.String('Generation: 0'))
       window.Display()
 
       currentTime = time.clock()
@@ -46,13 +45,6 @@ def main() :
       if ((currentTime - initialTime) > 2):
          initialTime = currentTime
          numCircles += 1
-"""
-      window.Draw(sf.Shape.Rectangle(0, 0, window_size, window_size, sf.Color(0, 0, 0)))
-      window.Draw(sf.String('Generation: 0'))
-      window.Draw(sf.Shape.Circle(window_size / 2, window_size / 2, 100, sf.Color(100, 0, 0)))
-      drawCircles(window, population, numCircles)
-"""
-
 
 
 def drawCircles(window, population, size) :

@@ -1,31 +1,22 @@
+from rectangle import Rectangle
 
 class Env:
-
-   def __init__(self, window, window_size, sf, envNum):
-      self.window = window
-      self.envNum = envNum
-      self.sf = sf
+   def __init__(self, window_size):
+      self.env_num = 1
       self.window_size = window_size
-      self.createEnv(window, window_size, sf, envNum)
+      self.create_env1()
 
-   def createEnv(self, window, window_size, sf, envNum):
-      window.Draw(sf.Shape.Rectangle(0,0,window_size, window_size, sf.Color(255, 255, 255)))
-      window.Draw(sf.String('Generation: 0'))
+   def draw(self, window):
+      for obstacle in self.obstacles:
+         window.Draw(sf.Shape.Rectangle(obstacle.x, obstacle.y, obstacle.w, obstacle.h, sf.Color(0, 0, 255)))
 
-      #create the environment here
-      if (envNum == 1):
-         Env.env1(self, window, window_size, sf)
-      if (envNum ==2):
-         Env.env2(self, window, window_size, sf)
+   def create_env1(self):
+      self.obstacles = []
+      self.obstacles.append(Rectangle(0, 0, 30, 30))
+      self.obstacles.append(Rectangle(self.window_size - 30, self.window_size - 30, self.window_size, self.window_size))
+      self.obstacles.append(Rectangle(self.window_size / 2 - 50, self.window_size / 2 + 50, self.window_size / 2 + 50, self.window_size / 2 + 50))
 
-
-   def env1(self, window, window_size, sf):
-      #Rectangle(X1, Y1, X2, Y2, Color, [Outline], [OutlineColor]);
-      window.Draw(sf.Shape.Rectangle(0, 0, 30, 30, sf.Color(0,0,255)))
-      window.Draw(sf.Shape.Rectangle(window_size-30,window_size-30 , window_size, window_size, sf.Color(255, 0, 0)))
-      window.Draw(sf.Shape.Rectangle((window_size/2)-50, (window_size/2)-50, (window_size/2)+50, (window_size/2)+50, sf.Color(0,255,0)))
-     
-      
-   def env2(self, window, window_size, sf):
-      window.Draw(sf.Shape.Rectangle(100, 100, 200, 200, sf.Color(0,0,0)))
-      window.Draw(sf.Shape.Rectangle((window_size/2)-100, (window_size/2)-100, (window_size/2)+100, (window_size/2)+100, sf.Color(0,0,0)))
+   def create_env2(self):
+      self.obstacles = []
+      self.obstacles.append(Rectangle(100, 100, 200, 200))
+      self.obstacles.append(Rectangle(self.window_size / 2 - 100, self.window_size / 2 - 100, self.window_size / 2 + 100, self.window_size / 2 + 100))
