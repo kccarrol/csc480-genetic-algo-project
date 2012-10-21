@@ -3,8 +3,17 @@ import random
 
 class Individual:
    def __init__(self):
-      max_circles = 100
-      self.generate(max_circles)
+      self.binary_string = ""
+
+   def draw(self, window, env):
+      fitness = self.fitness(env)
+      for circle in self.decode():
+         window.Draw(sf.Shape.Circle(circle.position[0], circle.position[1], circle.radius, sf.Color(100, 100, 0)))
+      window.Draw(sf.String('Fitness: %' % fitness))
+
+   def fitness(self, env):
+      # XXX
+      return 0
 
    def generate(self, number_of_circles):
       self.binary_string = ""
@@ -46,9 +55,15 @@ class Individual:
          count = count + 1
       return val
 
+def random_individual():
+   max_circles = 100
+   individual = Individual()
+   individual.generate(max_circles)
+   return individual
+
 def main():
    print "--- Generate ---"
-   indiv = Individual()
+   indiv = random_individual()
    print "Return from generate function " + indiv.binary_string
    circles = indiv.decode()
    for circle in circles:
